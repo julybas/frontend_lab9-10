@@ -3,16 +3,26 @@ import React from "react";
 const TrainCard = ({ train }) => {
   return (
     <div>
-      <h3>Потяг: {train.number}</h3>
-      <p>
-        <strong>Маршрут:</strong> {train.route}
-      </p>
-      <p>
-        <strong>Відправлення:</strong> {train.departure}
-      </p>
-      <p>
-        <strong>Тривалість:</strong> {train.duration}
-      </p>
+      <h3>🚆 {train.number}</h3>
+
+      <div>
+        <div>
+          <div>{train.departureDate}</div>
+          <div>{train.departureTime}</div>
+          <div>{train.from}</div>
+        </div>
+
+        <div>
+          <span>{train.duration}</span>
+          <span>⟶</span>
+        </div>
+
+        <div>
+          <div>{train.arrivalDate}</div>
+          <div>{train.arrivalTime}</div>
+          <div>{train.to}</div>
+        </div>
+      </div>
     </div>
   );
 };
