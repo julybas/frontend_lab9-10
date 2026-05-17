@@ -2,6 +2,25 @@ import React, { useState } from "react";
 import TrainCard from "./TrainCard";
 import { trains } from "../data/trains";
 
+const FilterInput = ({
+  field,
+  value,
+  onChange,
+  type = "text",
+  placeholder = "",
+  extra = {},
+}) => (
+  <div>
+    <input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={(e) => onChange(field, e.target.value)}
+      {...extra}
+    />
+  </div>
+);
+
 const TrainList = () => {
   const [f, setF] = useState({
     query: "",
@@ -29,25 +48,76 @@ const TrainList = () => {
     );
   });
 
+  const hasFilters = f.from || f.to || f.date || f.time;
+
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Пошук..."
-        value={f.query}
-        onChange={(e) => updateF("query", e.target.value)}
-      />
-
+      {/* Контент пошуку та картки */}
       <div>
-        {trains.length === 0 ? (
-          <p>Список потягів порожній.</p>
-        ) : filteredTrains.length > 0 ? (
-          filteredTrains.map((train) => (
-            <TrainCard key={train.id} train={train} />
-          ))
-        ) : (
-          <p>За заданими параметрами рейсів не знайдено</p>
-        )}
+        <div>
+          <input
+            type="text"
+            placeholder="Пошук..."
+            value={f.query}
+            onChange={(e) => updateF("query", e.target.value)}
+          />
+        </div>
+
+        <div>
+          {trains.length === 0 ? (
+            <p>Список потягів порожній.</p>
+          ) : filteredTrains.length > 0 ? (
+            filteredTrains.map((train) => (
+              <TrainCard key={train.id} train={train} />
+            ))
+          ) : (
+            <p>За заданими параметрами рейсів не знайдено</p>
+          )}
+        </div>
+      </div>
+
+      {/* Сайдбар з фільтрами */}
+      <div>
+        <div>
+          <h3>Фільтрація</h3>
+          {hasFilters && (
+            <button
+              onClick={() =>
+                setF({ ...f, from: "", to: "", date: "", time: "" })
+              }
+            >
+              Скинути
+            </button>
+          )}
+        </div>
+
+        <div>
+          <FilterInput
+            field="from"
+            value={f.from}
+            onChange={updateF}
+            placeholder="Місто відправлення..."
+          />
+          <FilterInput
+            field="to"
+            value={f.to}
+            onChange={updateF}
+            placeholder="Місто прибуття..."
+          />
+          <FilterInput
+            field="date"
+            value={f.date}
+            onChange={updateF}
+            type="date"
+          />
+          <FilterInput
+            field="time"
+            value={f.time}
+            onChange={updateF}
+            placeholder="Година (напр. 14)"
+            extra={{ maxLength: 2 }}
+          />
+        </div>
       </div>
     </div>
   );
