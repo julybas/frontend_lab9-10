@@ -3,6 +3,7 @@ import TrainCard from "./TrainCard";
 import { trains } from "../data/trains";
 
 const FilterInput = ({
+  label,
   field,
   value,
   onChange,
@@ -11,8 +12,10 @@ const FilterInput = ({
   extra = {},
 }) => (
   <div>
+    <label className="uz-label">{label}</label>
     <input
       type={type}
+      className="uz-input"
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(field, e.target.value)}
@@ -51,37 +54,41 @@ const TrainList = () => {
   const hasFilters = f.from || f.to || f.date || f.time;
 
   return (
-    <div>
-      {/* Контент пошуку та картки */}
-      <div>
-        <div>
+    <div className="uz-layout">
+      {/* ліва частина*/}
+      <div className="uz-main-content">
+        <div className="uz-main-search">
           <input
             type="text"
+            className="uz-input uz-search-input"
             placeholder="Пошук..."
             value={f.query}
             onChange={(e) => updateF("query", e.target.value)}
           />
         </div>
 
-        <div>
+        <div className="uz-grid">
           {trains.length === 0 ? (
-            <p>Список потягів порожній.</p>
+            <p className="uz-empty-text">Список потягів порожній.</p>
           ) : filteredTrains.length > 0 ? (
             filteredTrains.map((train) => (
               <TrainCard key={train.id} train={train} />
             ))
           ) : (
-            <p>За заданими параметрами рейсів не знайдено</p>
+            <p className="uz-empty-text">
+              За заданими параметрами рейсів не знайдено
+            </p>
           )}
         </div>
       </div>
 
-      {/* Сайдбар з фільтрами */}
-      <div>
-        <div>
-          <h3>Фільтрація</h3>
+      {/* Сайдбар */}
+      <div className="uz-sidebar">
+        <div className="uz-sidebar-header">
+          <h3 className="uz-sidebar-title">Фільтрація</h3>
           {hasFilters && (
             <button
+              className="uz-reset-btn"
               onClick={() =>
                 setF({ ...f, from: "", to: "", date: "", time: "" })
               }
@@ -91,30 +98,34 @@ const TrainList = () => {
           )}
         </div>
 
-        <div>
+        <div className="uz-filters">
           <FilterInput
+            label="Звідки"
             field="from"
             value={f.from}
             onChange={updateF}
             placeholder="Місто відправлення..."
           />
           <FilterInput
+            label="Куди"
             field="to"
             value={f.to}
             onChange={updateF}
             placeholder="Місто прибуття..."
           />
           <FilterInput
+            label="Дата відправлення"
             field="date"
             value={f.date}
             onChange={updateF}
             type="date"
           />
           <FilterInput
+            label="Година відправлення"
             field="time"
             value={f.time}
             onChange={updateF}
-            placeholder="Година (напр. 14)"
+            placeholder="Година"
             extra={{ maxLength: 2 }}
           />
         </div>

@@ -219,6 +219,29 @@ body {
   padding: 0 20px;
 }
 
+.uz-search-wrapper {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.uz-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 14px 16px;
+  background-color: var(--uz-blue);
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.uz-input:focus {
+  outline: none;
+  border-color: var(--uz-blue);
+  box-shadow: 0 0 0 3px rgba(21, 34, 78, 0.15);
+}
+
 .uz-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -298,4 +321,66 @@ body {
 .uz-empty-text {
   text-align: center;
   grid-column: 1 / -1;
+}
+
+.uz-sidebar {
+  flex: 0 0 300px;
+  position: sticky;
+  top: 20px;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+  border-top: 6px solid var(--uz-yellow);
+  box-sizing: border-box;
+}
+
+.uz-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.uz-sidebar-title {
+  margin: 0;
+  color: var(--uz-blue);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.uz-reset-btn {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+}
+
+.uz-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.uz-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+/* Адаптивність для телефонів */
+@media (max-width: 800px) {
+  .uz-layout {
+    flex-direction: column;
+  }
+  .uz-sidebar {
+    width: 100%;
+    flex: auto;
+    position: static;
+  }
 }
