@@ -167,7 +167,7 @@
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -4.5px;
     border: 5px solid transparent;
@@ -181,4 +181,121 @@
     right: 0;
     border-right-color: var(--border);
   }
+}
+
+:root {
+  --uz-blue: #15224e;
+  --uz-yellow: #f8c822;
+  --uz-bg: #f4f5f7;
+  --uz-text: #111827;
+  --uz-gray: #6b7280;
+}
+
+body {
+  background-color: var(--uz-bg);
+  color: var(--uz-text);
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+.uz-header {
+  background-color: var(--uz-blue);
+  color: white;
+  padding: 24px 20px;
+  text-align: center;
+  border-bottom: 5px solid var(--uz-yellow);
+  margin-bottom: 30px;
+}
+
+.uz-header h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.uz-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.uz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding-bottom: 40px;
+}
+
+.uz-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid var(--uz-blue);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.uz-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.uz-train-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--uz-blue);
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.uz-route {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+
+.uz-details {
+  color: var(--uz-gray);
+  font-size: 15px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.uz-details strong {
+  color: var(--uz-text);
+}
+
+.uz-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.uz-main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.uz-main-search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.uz-search-input {
+  width: 100%;
+  font-size: 18px;
+  padding: 16px;
+}
+
+.uz-empty-text {
+  text-align: center;
+  grid-column: 1 / -1;
 }
