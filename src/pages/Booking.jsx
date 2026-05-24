@@ -29,9 +29,40 @@ const Booking = () => {
 
   if (!train) return <p>Потяг не знайдено</p>;
 
+  const toggleSeat = (s) => {
+    if (!bookedSeats.includes(s)) {
+      setSelectedSeats((prev) =>
+        prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s],
+      );
+    }
+  };
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleBooking = (e) => {
+    e.preventDefault();
+    if (!selectedSeats.length) return toast.error("Оберіть хоча б одне місце!");
+
+    const phoneRegex = /^\+?\d{10,13}$/;
+    const cleanPhone = form.phone.replace(/[\s\-()]/g, "");
+    if (!phoneRegex.test(cleanPhone)) {
+      return toast.error("Hомер телефону +380...");
+    }
+
+    saveBooking({
+      trainId,
+      wagon: selectedWagon,
+      seats: selectedSeats,
+      user: form,
+    });
+    toast.success("Квитки успішно заброньовано!");
+    navigate("/");
+  };
+
   return (
-    <div>
-      <h2>
+    <div className="booking-container">
+      <h2 className="booking-title">
         Поїзд №{train.number} ({train.from} — {train.to})
       </h2>
 
