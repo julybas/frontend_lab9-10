@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import { trains } from "../data/trains";
 import { getBookingsForTrain, saveBooking } from "../services/BookingService";
 import WagonSelector from "../components/WagonSelector";
+import SeatMap from "../components/SeatMap";
+import BookingForm from "../components/BookingForm";
 import "../App.css";
 
 const Booking = () => {
@@ -36,6 +38,19 @@ const Booking = () => {
       <WagonSelector
         selectedWagon={selectedWagon}
         setSelectedWagon={setSelectedWagon}
+      />
+
+      <SeatMap
+        bookedSeats={bookedSeats}
+        selectedSeats={selectedSeats}
+        toggleSeat={toggleSeat}
+      />
+
+      <BookingForm
+        form={form}
+        handleChange={handleChange}
+        handleBooking={handleBooking}
+        selectedCount={selectedSeats.length}
       />
     </div>
   );
