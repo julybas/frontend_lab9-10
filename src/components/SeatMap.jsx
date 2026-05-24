@@ -21,17 +21,17 @@ const SeatMap = ({ bookedSeats, selectedSeats, toggleSeat }) => {
   };
 
   return (
-    <div>
+    <div className="wagon-body">
       {Array.from({ length: 5 }).map((_, i) => {
         const s = i * 4 + 1;
         return (
-          <div key={i}>
-            <div>
+          <div key={i} className="seat-row">
+            <div className="seat-pair">
               {renderSeat(s)}
               {renderSeat(s + 1)}
             </div>
-            <div></div>
-            <div>
+            <div className="aisle"></div>
+            <div className="seat-pair">
               {renderSeat(s + 2)}
               {renderSeat(s + 3)}
             </div>
