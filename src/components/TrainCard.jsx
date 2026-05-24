@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const TrainCard = ({ train }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="uz-card">
       <h3 className="uz-train-number">🚆 {train.number}</h3>
@@ -58,6 +61,22 @@ const TrainCard = ({ train }) => {
           </div>
           <div style={{ fontSize: "18px", fontWeight: "600" }}>{train.to}</div>
         </div>
+      </div>
+      <div>
+        <button
+          onClick={() => navigate(`/booking/${train.id}`)}
+          style={{
+            marginTop: "10px",
+            padding: "8px 16px",
+            background: "var(--uz-blue)",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          Обрати місця
+        </button>
       </div>
     </div>
   );
