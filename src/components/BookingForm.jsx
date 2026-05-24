@@ -2,11 +2,12 @@ import React from "react";
 
 const BookingForm = ({ form, handleChange, handleBooking, selectedCount }) => {
   return (
-    <form onSubmit={handleBooking}>
+    <form onSubmit={handleBooking} className="booking-form">
       <input
         type="text"
         name="name"
         placeholder="Прізвище та ім'я"
+        className="uz-input"
         value={form.name}
         onChange={handleChange}
         required
@@ -15,6 +16,7 @@ const BookingForm = ({ form, handleChange, handleBooking, selectedCount }) => {
         type="tel"
         name="phone"
         placeholder="Телефон (+380...)"
+        className="uz-input"
         value={form.phone}
         onChange={handleChange}
         required
@@ -23,11 +25,14 @@ const BookingForm = ({ form, handleChange, handleBooking, selectedCount }) => {
         type="email"
         name="email"
         placeholder="Email для квитків"
+        className="uz-input"
         value={form.email}
         onChange={handleChange}
         required
       />
-      <button type="submit">Оформити квитки ({selectedCount} шт.)</button>
+      <button type="submit" className="submit-btn">
+        Оформити квитки ({selectedCount} шт.)
+      </button>
     </form>
   );
 };
